@@ -1,6 +1,4 @@
-from multiprocessing import context
-from pyexpat import model
-from turtle import mode
+
 from .models import *
 from django.contrib import messages
 from django.shortcuts import render
@@ -16,6 +14,85 @@ from django.contrib.auth import login, logout, update_session_auth_hash
 from django.http import HttpResponseRedirect, request, HttpResponse, JsonResponse
  
 
-
-class Index(TemplateView):    
+class Index(ListView):
+    model = Producto
     template_name = 'Index.html' 
+     
+
+class Registro(CreateView):
+    model = User
+    form_class = UsuarioForm
+    template_name = 'Registro.html'
+    success_url = reverse_lazy('Tienda:Index') 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Registrar Usuario'
+        return context
+
+    def form_invalid(self, form):
+        messages.error(self.request, form.errors)
+        return self.render_to_response(
+            self.get_context_data(request=self.request, form=form))
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Se ha registrado con exito')
+        return response
+
+
+
+class Login(FormView):
+    template_name = 'Login.html'
+    form_class = LoginForm
+    success_url = reverse_lazy('Tienda:Index')
+
+    @method_decorator(csrf_protect)
+    @method_decorator(never_cache)
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return super(Login, self).dispatch(request, *args, **kwargs) 
+
+    def form_valid(self, form):
+        login(self.request, form.get_user())
+        messages.success(self.request, 'Bienvenido')
+        return super(Login, self).form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, form.errors)
+        return self.render_to_response(
+            self.get_context_data(request=self.request, form=form))
+
+
+class LogoutUsuario(RedirectView):
+    pattern_name = 'Tienda:Index'
+
+    def dispatch(self, request, *args, **kwargs):
+        logout(request)
+        return super().dispatch(request, *args, **kwargs)
+
+
+class RegistroProducto(CreateView):
+    model = Producto
+    form_class = RegistroProducto
+    template_name = 'RegistroProducto.html'
+    success_url = reverse_lazy('Tienda:Index')  
+
+    def form_invalid(self, form):
+        messages.error(self.request, form.errors)
+        return self.render_to_response(
+            self.get_context_data(request=self.request, form=form))
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Se ha registrado con exito')
+        return response
+    
+
+class Producto(DetailView):
+    model = Producto
+    template_name = 'Producto.html'
+    
+
