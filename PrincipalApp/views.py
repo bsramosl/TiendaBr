@@ -89,7 +89,7 @@ class RegistroProducto(CreateView):
         response = super().form_valid(form)
         messages.success(self.request, 'Se ha registrado con exito')
         return response
-    
+ 
 
 class Producto(DetailView):
     model = Producto
