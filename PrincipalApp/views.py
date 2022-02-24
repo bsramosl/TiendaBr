@@ -91,8 +91,15 @@ class RegistroProducto(CreateView):
         return response
  
 
-class Producto(DetailView):
+class Productos(DetailView):
     model = Producto
     template_name = 'Producto.html'
-    
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['book_list'] = Producto.objects.all()
+        return context
+    
+ 

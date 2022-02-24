@@ -10,6 +10,7 @@ class Producto(models.Model):
     foto1 = models.ImageField('Imagen1',upload_to='img/',blank=True, null=True)
     foto2 = models.ImageField('Imagen2',upload_to='img/',blank=True, null=True)
     foto3 = models.ImageField('Imagen3',upload_to='img/',blank=True, null=True)
+    
     class Meta:
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
