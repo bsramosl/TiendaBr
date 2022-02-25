@@ -35,7 +35,7 @@ class LoginForm(AuthenticationForm):
         )
 
 
-class RegistroProducto(forms.ModelForm):
+class ProductoForm(forms.ModelForm):
     nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'input'}))
     descripcion = forms.CharField(widget=forms.TextInput(attrs={'placeholder': ' Descripcionrio','class': 'input'}))
     precio = forms.FloatField(widget=forms.TextInput(attrs={'placeholder': 'Precio','class': 'input'}))    
@@ -44,7 +44,7 @@ class RegistroProducto(forms.ModelForm):
         fields = '__all__'
 
 
-class RegistroCategoria(forms.ModelForm): 
+class CategoriaForm(forms.ModelForm): 
     class Meta:
         model = Producto
         fields = '__all__'

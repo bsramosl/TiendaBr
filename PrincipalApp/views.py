@@ -1,4 +1,5 @@
 
+from re import template
 from .models import *
 from django.contrib import messages
 from django.shortcuts import render
@@ -76,7 +77,7 @@ class LogoutUsuario(RedirectView):
 
 class RegistroProducto(CreateView):
     model = Producto
-    form_class = RegistroProducto
+    form_class =  ProductoForm
     template_name = 'RegistroProducto.html'
     success_url = reverse_lazy('Tienda:Index')  
 
@@ -101,5 +102,17 @@ class Productos(DetailView):
         # Add in a QuerySet of all the books
         context['book_list'] = Producto.objects.all()
         return context
+
+class ActualizarProducto(UpdateView):
+    model = Producto
+    form_class = ProductoForm
+    template_name = 'ActualizarProducto.html'
+    success_url = reverse_lazy('Tienda:Index')
+
+class DeleteProducto(DeleteView):
+    model = Producto
+    template_name = 'DeleteProducto.html'
+    success_url = reverse_lazy('Tienda:Index')
+
     
  

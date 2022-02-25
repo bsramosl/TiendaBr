@@ -1,4 +1,7 @@
+from msilib.schema import Class
+from tabnanny import verbose
 from django.db import models
+from django.contrib.auth.models import User
  
 # Create your models here.
 
@@ -18,6 +21,18 @@ class Producto(models.Model):
     
     def __str__(self):
         return self.nombre
+
+class Carrito(models.Model):
+    id_user = models.ForeignKey(User,on_delete=models.CASCADE)
+    id_producto = models.ForeignKey(Producto,on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Carrito'
+        verbose_name_plural = 'Carritos'
+        ordering =['id_producto']
+
+    def __str__(self):
+        return self.id_producto
 
 
 
