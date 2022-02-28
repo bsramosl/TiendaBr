@@ -1,0 +1,70 @@
+{% extends "layouts/baseprincipal.html" %} {% load static %} {% block content %}
+
+<section
+  class="page_header"
+  style="background: url('/media/img/fondohome.jpg')"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2 class="text-uppercase">Productos</h2>
+        <p>Listado de Productos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shop-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <table class="cart-table table table-bordered">
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%  for item in object_list  %}
+
+            <tr>
+              <td>
+                <a href="#" class="remove"><i class="fa fa-times"></i></a>
+              </td>
+              <td>
+                <a href="{% url 'Tienda:Producto' item.id%}"
+                  ><img src="/media/{{item.foto}}" alt="" height="90" width="90"
+                /></a>
+              </td>
+              <td>
+                <a href="shop_single_full.html">{{item.nombre}}</a>
+              </td>
+              <td>
+                <span >${{item.precio}}</span>
+              </td>
+              <td>
+                <div  >1</div>
+              </td>
+              <td>
+                <span class="amount">£69.99</span>
+              </td>
+            </tr> 
+
+            {% empty %}
+            <li>No articles yet.</li>
+            {% endfor %}
+
+            
+          </tbody>
+        </table> 
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
