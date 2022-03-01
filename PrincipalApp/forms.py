@@ -36,9 +36,9 @@ class LoginForm(AuthenticationForm):
 
 
 class ProductoForm(forms.ModelForm):
-    nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'input'}))
-    descripcion = forms.CharField(widget=forms.TextInput(attrs={'placeholder': ' Descripcionrio','class': 'input'}))
-    precio = forms.FloatField(widget=forms.TextInput(attrs={'placeholder': 'Precio','class': 'input'}))    
+    nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'form-control'}))
+    descripcion = forms.CharField(widget=forms.TextInput(attrs={'placeholder': ' Descripcionrio','class': 'form-control'}))
+    precio = forms.FloatField(widget=forms.TextInput(attrs={'placeholder': 'Precio','class': 'form-control'}))    
     class Meta:
         model = Producto
         fields = '__all__'
