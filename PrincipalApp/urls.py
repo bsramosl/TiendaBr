@@ -14,4 +14,10 @@ urlpatterns = [
    path('Producto/<int:pk>/',views.Productos.as_view(), name='Producto'),
    path('UpdateProducto/<int:pk>/',views.ActualizarProducto.as_view(), name='UpdateProducto'),
    path('DeleteProducto/<int:pk>/',views.DeleteProducto.as_view(), name='DeleteProducto'),
+
+   path('RegistrarCategoria/',views.RegistrarCategoria.as_view(), name='RegistrarCategoria'),
+   path('ListarCategoria/',views.ListarCategoria.as_view(), name='ListarCategoria'),
+   path('UpdateCategoria/<int:pk>/',views.ActualizarCategoria.as_view(), name='UpdateCategoria'),
+   path('DeleteCategoria/<int:pk>/',views.DeleteCategoria.as_view(),name='DeleteCategoria'),
+
 ]

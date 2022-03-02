@@ -7,8 +7,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
-        <h2 class="text-uppercase">Productos</h2>
-        <p>Listado de Productos</p>
+        <h2 class="text-uppercase">Categorias</h2>
+        <p>Listado de Categorias</p>
       </div>
     </div>
   </div>
@@ -19,46 +19,35 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <table class="cart-table table table-bordered">
-          <a href="{%url 'Tienda:RegistroProducto' %}" class="btn btn-success btn-lg btn-block">Registrar Producto</a>
+            <a href="{%url 'Tienda:RegistrarCategoria'%}" class="btn btn-success btn-lg btn-block">Registrar Categoria</a>
           <thead>
             <tr>
               <th>&nbsp;</th>
-              <th>&nbsp;</th>
-              <th>Producto</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
+              <th>Nombre</th>
+              <th>Descripcion</th>
               <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
-            {%  for item in object_list  %}
-
+            {%  for item in object_list  %} 
             <tr>
               <td>
                 <span >{{item.id}}</span>
+              </td> 
+              <td>
+                {{item.nombre}}
               </td>
               <td>
-                <a href="{% url 'Tienda:Producto' item.id%}"
-                  ><img src="/media/{{item.foto}}" alt="" height="90" width="90"
-                /></a>
-              </td>
-              <td>
-                <a href="shop_single_full.html">{{item.nombre}}</a>
-              </td>
-              <td>
-                <span >${{item.precio}}</span>
-              </td>
-              <td>
-                <div  >1</div>
+                <span >{{item.descripcion}}</span>
               </td>
               <td> 
-                <a href="{%url 'Tienda:DeleteProducto' item.id%}"><i class="fa fa-archive"></i></a>
-                <a href="{%url 'Tienda:UpdateProducto' item.id%}"><i class="fa fa-pencil-square-o"></i></a>
+                <a href="{%url 'Tienda:DeleteCategoria' item.id%}"><i class="fa fa-archive"></i></a>
+                <a href="{%url 'Tienda:UpdateCategoria' item.id%}"><i class="fa fa-pencil-square-o"></i></a>
               </td>
             </tr> 
 
             {% empty %}
-            <li>No articles yet.</li>
+            <li>No hay categorias</li>
             {% endfor %}
 
             

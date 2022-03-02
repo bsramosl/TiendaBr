@@ -39,13 +39,18 @@ class ProductoForm(forms.ModelForm):
     nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'form-control'}))
     descripcion = forms.CharField(widget=forms.TextInput(attrs={'placeholder': ' Descripcionrio','class': 'form-control'}))
     precio = forms.FloatField(widget=forms.TextInput(attrs={'placeholder': 'Precio','class': 'form-control'}))    
+    foto =forms.FileField(label='Imagen',widget=forms.FileInput(attrs={'class':'form-control', 'id':'customFile'}))
+    foto1 =forms.FileField(label='Imagen',widget=forms.FileInput(attrs={'class':'form-control', 'id':'customFile'}))
+    foto2 =forms.FileField(label='Imagen',widget=forms.FileInput(attrs={'class':'form-control', 'id':'customFile'}))
+    foto3 =forms.FileField(label='Imagen',widget=forms.FileInput(attrs={'class':'form-control', 'id':'customFile'}))
     class Meta:
         model = Producto
         fields = '__all__'
 
-
 class CategoriaForm(forms.ModelForm): 
+    nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'form-control'}))
+    descripcion = forms.CharField(widget=forms.TextInput(attrs={'placeholder': ' Descripcionrio','class': 'form-control'}))
     class Meta:
-        model = Producto
+        model = Categoria
         fields = '__all__'
  

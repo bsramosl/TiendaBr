@@ -305,9 +305,9 @@
 				<li class="dropdown">
 					<a href="recipe.html" class="dropdown-toggle"  data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false"
 					  >{{ user.first_name }} {{ user.last_name }}<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-					  <li><a href="{% url 'Tienda:RegistroProducto' %}">Registrar Producto</a></li>					  
-            <li><a href="{% url 'Tienda:ListarProducto' %}">Listar Producto</a></li>				
+					<ul class="dropdown-menu">				  
+            <li><a href="{% url 'Tienda:ListarProducto' %}">Listar Producto</a></li>	
+            <li><a href="{% url 'Tienda:ListarCategoria' %}">Listar Categoria</a></li>				
 					  <li><a href="{% url 'Tienda:Logout' %}">Salir</a></li> 
 					</ul>
 				  </li>

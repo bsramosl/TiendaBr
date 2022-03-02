@@ -1,4 +1,5 @@
 
+from pyexpat import model
 from re import template
 from .models import *
 from django.contrib import messages
@@ -79,7 +80,7 @@ class RegistroProducto(CreateView):
     model = Producto
     form_class =  ProductoForm
     template_name = 'RegistroProducto.html'
-    success_url = reverse_lazy('Tienda:Index')  
+    success_url = reverse_lazy('Tienda:ListarProducto')  
 
     def form_invalid(self, form):
         messages.error(self.request, form.errors)
@@ -106,15 +107,46 @@ class Productos(DetailView):
 class ActualizarProducto(UpdateView):
     model = Producto
     form_class = ProductoForm
-    template_name = 'ActualizarProducto.html'
-    success_url = reverse_lazy('Tienda:Index')
+    template_name = 'ActualizarProducto.html' 
+    success_url = reverse_lazy('Tienda:ListarProducto')
+
+    def form_invalid(self, form):
+        messages.error(self.request, form.errors)
+        return self.render_to_response(
+            self.get_context_data(request=self.request, form=form))
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Se ha registrado con exito')
+        return response
 
 class DeleteProducto(DeleteView):
     model = Producto
     template_name = 'DeleteProducto.html'
-    success_url = reverse_lazy('Tienda:Index')
-
+    success_url = reverse_lazy('Tienda:ListarProducto') 
     
 class ListarProducto(ListView):
     model = Producto
     template_name = 'ListadoProducto.html'
+
+class RegistrarCategoria(CreateView):
+    model = Categoria
+    form_class = CategoriaForm
+    template_name = 'categoria/RegistrarCategoria.html'
+    success_url= reverse_lazy('Tienda:ListarCategoria')
+
+class ListarCategoria(ListView):
+    model = Categoria
+    template_name = 'categoria/ListarCategoria.html'
+
+class ActualizarCategoria(UpdateView):
+    model = Categoria
+    form_class = CategoriaForm
+    template_name = 'categoria/ActualizarCategoria.html'
+    success_url = reverse_lazy('Tienda:ListarCategoria')
+
+class DeleteCategoria(DeleteView):
+    model = Categoria
+    template_name = 'categoria/DeleteCategoria.html'
+    success_url = reverse_lazy('Tienda:ListarCategoria')
+

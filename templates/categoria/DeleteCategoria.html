@@ -7,8 +7,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
-        <h2 class="text-uppercase">Productos</h2>
-        <p>Listado de Productos</p>
+        <h2 class="text-uppercase">Categorias</h2>
+        <p>Listado de Categorias</p>
       </div>
     </div>
   </div>
@@ -20,33 +20,21 @@
       <div class="col-md-10 col-md-offset-1">
         <table class="cart-table table table-bordered">
           <thead>
-            <tr>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
-              <th>Producto</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
-              <th>Opciones</th>
+            <tr> 
+              <th>Nombre</th>
+              <th>Descripcion</th> 
+              <th>Opciones</th>  
             </tr>
           </thead>
           <tbody> 
             <form method="post">
                 {% csrf_token %}
-            <tr>
+            <tr> 
               <td>
-                <a href="#" class="remove"><i class="fa fa-times"></i></a>
-              </td>
-              <td> <img src="/media/{{ object.foto}}" alt="" height="90" width="90"
-                /></a>
+               {{object.nombre}}
               </td>
               <td>
-                <a href="shop_single_full.html">{{object.nombre}}</a>
-              </td>
-              <td>
-                <span >${{object.precio}}</span>
-              </td>
-              <td>
-                <div  >1</div>
+                <span >{{object.descripcion}}</span>
               </td> 
               <td>
                 <button type="submit" class="btn btn-danger">Borrar</button>          
