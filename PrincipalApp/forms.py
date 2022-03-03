@@ -54,3 +54,11 @@ class CategoriaForm(forms.ModelForm):
         model = Categoria
         fields = '__all__'
  
+
+class CarritoForm(forms.ModelForm):
+    id_user = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'form-control'}))
+    id_producto = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'form-control'}))
+    cantidad = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'form-control'}))
+    class Meta:
+        model = Carrito
+        fields = '__all__'

@@ -150,3 +150,11 @@ class DeleteCategoria(DeleteView):
     template_name = 'categoria/DeleteCategoria.html'
     success_url = reverse_lazy('Tienda:ListarCategoria')
 
+class RegistrarCarrito(CreateView):
+    model = Carrito
+    fields = ['id_user','id_producto','cantidad']       
+    success_url = reverse_lazy('Tienda:ListarCarrito')
+
+class ListarCarrito(ListView):
+    model = Carrito
+    template_name = 'carrito/ListarCarrito.html'

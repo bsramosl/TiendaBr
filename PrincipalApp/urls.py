@@ -19,5 +19,8 @@ urlpatterns = [
    path('ListarCategoria/',views.ListarCategoria.as_view(), name='ListarCategoria'),
    path('UpdateCategoria/<int:pk>/',views.ActualizarCategoria.as_view(), name='UpdateCategoria'),
    path('DeleteCategoria/<int:pk>/',views.DeleteCategoria.as_view(),name='DeleteCategoria'),
+ 
+
+   path('ListarCarrito/',views.ListarCarrito.as_view(),name='ListarCarrito'),
 
 ]

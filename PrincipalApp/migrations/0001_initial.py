@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=50)),
                 ('descripcion', models.CharField(max_length=50)),
-                ('precio', models.CharField(max_length=50)),
+                ('precio', models.IntegerField(null=True)),
                 ('foto', models.ImageField(blank=True, null=True, upload_to='img/', verbose_name='Imagen')),
                 ('foto1', models.ImageField(blank=True, null=True, upload_to='img/', verbose_name='Imagen1')),
                 ('foto2', models.ImageField(blank=True, null=True, upload_to='img/', verbose_name='Imagen2')),
