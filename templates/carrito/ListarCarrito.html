@@ -25,7 +25,7 @@
                 <th>&nbsp;</th>
                 <th>Producto</th>
                 <th>Precio</th>
-                <th>Cnatidad</th>
+                <th>Cantidad</th>
                 <th>Total</th>
               </tr>
             </thead>
@@ -33,27 +33,29 @@
                 {%  for item in object_list  %} 
               <tr>
                 <td>
-                  <a href="#" class="remove"
-                    ><i class="fa fa-times"></i
-                  ></a>
+                  <form action="{%url 'Tienda:DeleteCarrito' item.id %}" method="post">
+                    {% csrf_token %}                   
+                    <button type="submit" class="btn btn-default pull-right"><i class="fa fa-times"></i
+                      ></button>  
+                  </form>
                 </td>
                 <td>
                   <a href="shop_single_full.html"
                     ><img
-                      src="/media/{{item.id_producto.foto}}"
+                      src="/media/{{item.producto.foto}}"
                       alt=""
                       height="90"
                       width="90"
                   /></a>
                 </td>
                 <td>
-                  <a href="shop_single_full.html">{{item.id_producto.nombre}}</a>
+                  <a href="shop_single_full.html">{{item.producto.nombre}}</a>
                 </td>
                 <td>
-                  <span class="amount">{{item.id_producto.precio}}</span>
+                  <span class="amount">{{item.producto.precio}}</span>
                 </td>
                 <td>
-                  <div class="quantity">1</div>
+                  <div class="quantity">{{item.cantidad}}</div>
                 </td>
                 <td>
                   <span class="amount">£69.99</span>

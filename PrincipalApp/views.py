@@ -3,7 +3,7 @@ from pyexpat import model
 from re import template
 from .models import *
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView, RedirectView,DetailView
 from django.views.generic.edit import FormView
@@ -87,22 +87,20 @@ class RegistroProducto(CreateView):
         return self.render_to_response(
             self.get_context_data(request=self.request, form=form))
 
-    def form_valid(self, form):
+    def form_valid(self, form): 
         response = super().form_valid(form)
         messages.success(self.request, 'Se ha registrado con exito')
         return response
  
 
-class Productos(DetailView):
-    model = Producto
+class Productos(TemplateView):
     template_name = 'Producto.html'
 
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
+    def get_context_data(self,pk ,**kwargs):          
         context = super().get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        context['book_list'] = Producto.objects.all()
-        return context
+        context['producto'] = Producto.objects.get(id=pk) 
+        return context 
+
 
 class ActualizarProducto(UpdateView):
     model = Producto
@@ -150,11 +148,24 @@ class DeleteCategoria(DeleteView):
     template_name = 'categoria/DeleteCategoria.html'
     success_url = reverse_lazy('Tienda:ListarCategoria')
 
-class RegistrarCarrito(CreateView):
-    model = Carrito
-    fields = ['id_user','id_producto','cantidad']       
-    success_url = reverse_lazy('Tienda:ListarCarrito')
+ 
+def RegistrarCarrito(request):  
+    print(request.POST)
+    if request.method == 'POST':    
+        carrito = CarritoForm(request.POST) 
+        if carrito.is_valid(): 
+            post = carrito.save(commit=False) 
+            post.save()
+            return redirect('Tienda:ListarCarrito') 
 
 class ListarCarrito(ListView):
     model = Carrito
     template_name = 'carrito/ListarCarrito.html'
+
+
+def DeleteCarrito(request,pk):
+    print(request.POST)
+    carrito = Carrito.objects.all()
+    if request.method == 'POST':           
+        carrito.delete()
+        return redirect('Tienda:ListarCarrito') 

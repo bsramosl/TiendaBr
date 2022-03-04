@@ -11,7 +11,9 @@ urlpatterns = [
    path('Logout/',views.LogoutUsuario.as_view(), name='Logout'),
    path('ListarProducto/',views.ListarProducto.as_view(), name='ListarProducto'),
    path('RegistroProducto/',views.RegistroProducto.as_view(), name='RegistroProducto'),
+
    path('Producto/<int:pk>/',views.Productos.as_view(), name='Producto'),
+   
    path('UpdateProducto/<int:pk>/',views.ActualizarProducto.as_view(), name='UpdateProducto'),
    path('DeleteProducto/<int:pk>/',views.DeleteProducto.as_view(), name='DeleteProducto'),
 
@@ -20,7 +22,9 @@ urlpatterns = [
    path('UpdateCategoria/<int:pk>/',views.ActualizarCategoria.as_view(), name='UpdateCategoria'),
    path('DeleteCategoria/<int:pk>/',views.DeleteCategoria.as_view(),name='DeleteCategoria'),
  
-
+   path('RegistrarCarrito/',views.RegistrarCarrito, name='RegistrarCarrito'),
    path('ListarCarrito/',views.ListarCarrito.as_view(),name='ListarCarrito'),
+   path('DeleteCarrito/<int:pk>/',views.DeleteCarrito ,name='DeleteCarrito'),
+   
 
 ]

@@ -33,15 +33,15 @@ class Categoria (models.Model):
         return self.nombre
 
 class Carrito(models.Model):
-    id_user = models.ForeignKey(User,on_delete=models.CASCADE)
-    id_producto = models.ForeignKey(Producto,on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User,on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto,on_delete=models.CASCADE)
     cantidad = models.IntegerField(blank=False,null=False)
 
     class Meta:
         verbose_name = 'Carrito'
         verbose_name_plural = 'Carritos'
-        ordering =['id_producto']
+        ordering =['usuario']
 
     def __str__(self):
-        return self.id_producto
+        return self.usuario
     

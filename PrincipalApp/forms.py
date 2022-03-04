@@ -56,8 +56,8 @@ class CategoriaForm(forms.ModelForm):
  
 
 class CarritoForm(forms.ModelForm):
-    id_user = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'form-control'}))
-    id_producto = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'form-control'}))
+    usuario = forms.ModelChoiceField(queryset=User.objects.all(),widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'form-control'}))
+    producto = forms.ModelChoiceField(queryset=Producto.objects.all(),widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'form-control'}))
     cantidad = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre','class': 'form-control'}))
     class Meta:
         model = Carrito
